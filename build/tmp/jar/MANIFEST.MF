@@ -1,0 +1,31 @@
+Manifest-Version: 1.0
+Export-Package: rplp.alfresco.fs.impl;version="1.0";uses:="com.sun.jna
+ ,net.fusejna,net.fusejna.types,nl.runnable.alfresco.annotations,nl.ru
+ nnable.alfresco.webscripts.annotations,org.alfresco.service.cmr.model
+ ,org.springframework.beans.factory,org.springframework.extensions.web
+ scripts,org.springframework.stereotype"
+Tool: Bnd-2.1.0.20130426-122213
+Bundle-Name: Alfresco Filesystem
+Created-By: 1.7.0_45 (Oracle Corporation)
+Bundle-Version: 1.0
+Bnd-LastModified: 1386689195000
+Bundle-ManifestVersion: 2
+Alfresco-Dynamic-Extension: true
+Bundle-Description: Yeah!
+Bundle-DocURL: https://github.com/lfridael/example-dynamic-extension
+Import-Package: com.sun.jna,net.fusejna,net.fusejna.types,net.sf.acegi
+ security,nl.runnable.alfresco.annotations;version="[1.0,2)",nl.runnab
+ le.alfresco.webscripts.annotations;version="[1.0,2)",org.alfresco.mod
+ el,org.alfresco.repo.model,org.alfresco.repo.security.authentication,
+ org.alfresco.service.cmr.dictionary,org.alfresco.service.cmr.model,or
+ g.alfresco.service.cmr.repository,org.alfresco.service.cmr.search,org
+ .alfresco.service.cmr.security,org.alfresco.service.namespace,org.alf
+ resco.util,org.apache.commons.io;version="[1.4,2)",org.apache.log4j,o
+ rg.springframework.beans.factory;version="[3.0,4)",org.springframewor
+ k.beans.factory.annotation;version="[3.0,4)",org.springframework.exte
+ nsions.webscripts,org.springframework.stereotype;version="[3.0,4)",ne
+ t.sf.cglib.reflect,org.springframework.aop.framework;version="[3.0,4)
+ ",net.sf.cglib.proxy,org.springframework.aop;version="[3.0,4)",org.ao
+ palliance.intercept,net.sf.cglib.core,org.aopalliance.aop
+Bundle-SymbolicName: rplp.AlfrescoFS
+

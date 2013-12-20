@@ -1,0 +1,81 @@
+apply plugin: "java"
+//apply plugin: "maven"
+apply plugin: 'alfresco-dynamic-extension'
+
+group = "rplp"
+version = 1.0
+    project.ext.sourceCompatibility = JavaVersion.VERSION_1_7
+    project.ext.targetCompatibility = JavaVersion.VERSION_1_7
+    project.ext.javaVersion = JavaVersion.VERSION_1_7
+
+    project.ext.dynamicExtensionsVersion = '1.0.0.M6-SNAPSHOT';
+// The versions shown here are the defaults as of 1.0.0.M5
+useAlfrescoVersion('4.2.e')
+useSurfVersion('1.2.0-M3')
+useDynamicExtensionsVersion('1.0.0.M6-SNAPSHOT')
+
+repositories {
+	flatDir { dir 'lib' }
+	//flatDir { dir '/home/rasmus/Ressources/alfresco-community-sdk-4.2.e/lib/server' }
+	fileTree(dir: '/home/rasmus/Ressources/alfresco-community-sdk-4.2.e/lib/server', include: '*.jar')
+	fileTree(dir: '/home/rasmus/Ressources/alfresco-community-sdk-4.2.e/lib/server/dependencies', include: '*.jar')
+   // mavenCentral()
+}
+
+buildscript {
+//  repositories { maven { url 'https://raw.github.com/lfridael/dynamic-extensions-for-alfresco/mvn-repo/' } }
+ //repositories { maven { url 'https://artifacts.alfresco.com/nexus/content/groups/public' } }
+//  dependencies { classpath 'nl.runnable.alfresco.dynamicextensions:gradle-plugin:1.0.0.M5' }
+     //gradle-plugin-1.0.0.M6-SNAPSHOT
+     
+     repositories {
+            flatDir { dir 'lib' }
+        }
+     dependencies {
+            classpath group: 'nl.runnable.alfresco.dynamicextensions', name: 'gradle-plugin', version: '1.0.0.M6-SNAPSHOT'
+        }
+}
+
+
+dependencies {
+//  compile 'javax.servlet:servlet-api:2.5'
+ // compile('org.springframework:spring-context:3.0.0.RELEASE') { transitive = false }
+ // compile('org.springframework:spring-beans:3.0.0.RELEASE') { transitive = false }
+  compile('javax.annotation:jsr250-api:1.0')
+    //implCompile 'commons-lang:commons-lang:2.6'
+	compile 'commons-io:commons-io:2.4'
+    compile 'org.apache.commons:commons-lang3:3.1'
+    compile 'net.java.dev.jna:jna:3.5.2'
+	compile 'com.google.guava:guava:14.0.1'
+    compile name: 'fuse-jna-uber'
+    compile fileTree(dir: '/home/rasmus/Ressources/alfresco-community-sdk-4.2.e/lib/server', include: '*.jar')
+    compile fileTree(dir: '/home/rasmus/Ressources/alfresco-community-sdk-4.2.e/lib/server/dependencies', include: '*.jar')
+    compile fileTree(dir: '/home/rasmus/Ressources/alfresco-community-sdk-4.2.e/lib/server/dependencies/optional', include: '*.jar')
+ //repositories { maven { url 'https://artifacts.alfresco.com/nexus/content/groups/public' } }
+ compile fileTree ( dir: 'lib', include: '*.jar' )
+        
+    //classpath group: 'nl.runnable.alfresco.dynamicextensions', name: 'gradle-plugin', version: '1.0.0.M6-SNAPSHOT' 
+
+ 
+    
+}
+
+
+jar {
+  manifest {
+    instructionReplace 'Bundle-Name', 'Alfresco Filesystem'
+    instruction 'Bundle-Description', 'Yeah!'
+    instruction 'Bundle-DocURL', 'https://github.com/lfridael/example-dynamic-extension'
+  }
+}
+
+
+
+
+installBundle {
+  // Installing to the repository requires an admin account.
+  toRepository(username: 'admin', password: 'admin')
+  // By default, the plugin uses this service endpoint: http://localhost:8080/alfresco/service/
+  // You can reconfigure the endpoint as follows:
+  // toRepository(host: 'my.alfresco.host', port: '80', servicePath: '/path/to/alfresco/service/)
+}
